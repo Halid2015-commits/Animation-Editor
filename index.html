@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Animation Editor</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="topbar">
+      <div class="title">Animation Editor</div>
+      <div class="top-controls">
+        <input id="fileInput" type="file" accept="image/*" multiple class="hidden-input">
+        <button id="addFromFiles" class="btn">Add Frames</button>
+        <button id="addBlank" class="btn">Blank</button>
+        <button id="drawMode" class="btn primary">Draw</button>
+        <div class="fps-group">
+          <label>FPS</label>
+          <input id="fps" type="range" min="1" max="60" value="12">
+          <span id="fpsValue">12</span>
+        </div>
+        <button id="play" class="btn">Play</button>
+        <button id="pause" class="btn">Pause</button>
+        <button id="exportSpritesheet" class="btn">Export</button>
+      </div>
+    </div>
+
+    <div class="workspace">
+      <aside class="left-panel">
+        <div class="panel-head">Timeline</div>
+        <div id="timeline" class="timeline"></div>
+      </aside>
+
+      <section class="canvas-area">
+        <div class="canvas-shell">
+          <canvas id="preview" width="512" height="512"></canvas>
+        </div>
+        <div id="drawPanel" class="draw-panel" hidden>
+          <div class="draw-controls">
+            <div class="tool-bar">
+              <button class="tool" data-tool="pencil" id="toolPencil" title="Pencil">✏️</button>
+              <button class="tool" data-tool="eraser" id="toolEraser" title="Eraser">🧽</button>
+              <button class="tool" data-tool="line" id="toolLine" title="Line">/\</button>
+              <button class="tool" data-tool="rect" id="toolRect" title="Rectangle">▭</button>
+              <button class="tool" data-tool="ellipse" id="toolEllipse" title="Ellipse">◯</button>
+              <button class="tool" data-tool="fill" id="toolFill" title="Fill">🪣</button>
+              <button id="undoDraw" title="Undo">↶</button>
+            </div>
+            <label>Color <input id="drawColor" type="color" value="#ff0000"></label>
+            <label>Size <input id="drawSize" type="range" min="1" max="64" value="6"></label>
+            <label>Alpha <input id="drawAlpha" type="range" min="0" max="1" step="0.05" value="1"></label>
+            <button id="clearDraw" class="btn muted">Clear</button>
+            <button id="saveDraw" class="btn primary">Save Frame</button>
+          </div>
+          <div class="draw-canvas-wrap"><canvas id="drawCanvas" width="512" height="512"></canvas></div>
+        </div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="panel-head">Inspector</div>
+        <div class="inspector">
+          <div class="ins-row"><strong>Frames:</strong> <span id="frameCount">0</span></div>
+          <div class="ins-row"><strong>Current:</strong> <span id="currentFrame">0</span></div>
+          <div style="margin-top:12px;color:#bbb;font-size:12px">Tip: Drag frames to reorder. Use Draw → Save Frame.</div>
+          <div id="drawPreview" class="draw-preview" hidden>
+            <div class="panel-head" style="margin-top:12px">Draw Preview</div>
+            <canvas id="previewDrawing" width="200" height="200"></canvas>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
