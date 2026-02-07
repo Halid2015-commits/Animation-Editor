@@ -21,3 +21,9 @@ Features
 - Drag and drop to reorder frames
 - Play / Pause and FPS control
 - Export a spritesheet image and JSON metadata
+ - Attach sounds to individual frames, preview them, and include sound names in exported JSON
+
+Sound
+- Attach audio files to the currently selected frame using the Inspector → Attach Sound.
+- Use the topbar mute and volume controls to manage audio during playback.
+- Exported JSON will include `soundName` for frames that have audio attached.
